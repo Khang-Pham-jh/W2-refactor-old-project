@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Decision Tree</title>
+    <link rel="stylesheet" href="Ex3.css">
+</head>
+<body>
+
+    <h1 class="header-title">Tree Manager Prototype</h1>
+
+    <div class="dashboard">
+        <!-- LEFT PANEL: The User Facing App -->
+        <div class="panel app-panel">
+            <h2>Live Preview</h2>
+            <div id="questionBox" class="question-box"></div>
+
+            <div class="controls">
+                <button id="backBtn" class="btn back-btn">Back</button>
+                <button id="restartBtn" class="btn restart-btn">Restart</button>
+            </div>
+        </div>
+
+        <!-- RIGHT PANEL: The Admin CMS -->
+        <div class="panel admin-panel">
+            <h2>Admin Data Manager</h2>
+
+            <form id="adminForm" class="admin-form">
+                <div style="background: #eaf2f8; padding: 10px; border-radius: 6px; margin-bottom: 10px;">
+                    <label>Action: Create or Edit</label>
+                    <select id="editSelect">
+                        <option value="">+ Create New Node</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label>Node ID (Tự động tạo)</label>
+                    <input type="text" id="nodeId" placeholder="Auto-generated ID" readonly>
+                </div>
+
+                <div>
+                    <label>Node Type</label>
+                    <select id="nodeType">
+                        <option value="question">Question (Has Options)</option>
+                        <option value="result">Final Result</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label>Text to Display</label>
+                    <input type="text" id="nodeText" placeholder="e.g., Do you like iOS or Android?" required>
+                </div>
+
+                <div id="optionsConfig" class="options-config">
+                    <div class="options-toolbar">
+                        <label>Options</label>
+                        <button type="button" id="addOptionBtn" class="add-option-btn">+ Add option</button>
+                    </div>
+
+                    <div id="optionsList" class="options-list" aria-label="Options list"></div>
+                </div>
+
+                <button type="submit" class="submit-btn" id="submitBtn">Save Node</button>
+            </form>
+
+            <datalist id="nodeIdsList">
+                <!-- Auto-suggest valid IDs -->
+            </datalist>
+
+            <h3>Existing Nodes</h3>
+            <ul id="nodeList" class="node-list">
+                <!-- Populated via JS -->
+            </ul>
+        </div>
+    </div>
+    <script src="refactored.js"></script>
+</body>
+</html>

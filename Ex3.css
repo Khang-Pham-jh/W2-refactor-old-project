@@ -1,0 +1,358 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #f4f6f8;
+    margin: 0;
+    padding: 20px;
+    color: #333;
+}
+
+.header-title {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #2c3e50;
+}
+
+/* Layout */
+.dashboard {
+    display: flex;
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    flex-wrap: wrap;
+}
+
+.panel {
+    background: white;
+    padding: 24px;
+    border-radius: 16px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    flex: 1;
+    min-width: 350px;
+}
+
+h2 {
+    margin-top: 0;
+    font-size: 24px;
+    color: #2c3e50;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+/* User App Styles */
+.question-box {
+    min-height: 150px;
+}
+
+.question-title {
+    font-size: 20px;
+    margin-bottom: 20px;
+    border: none;
+    padding: 0;
+}
+
+.option-btn {
+    display: block;
+    width: 100%;
+    padding: 14px 16px;
+    margin-bottom: 12px;
+    border: 2px solid #e0e6ed;
+    border-radius: 10px;
+    background: #fff;
+    text-align: left;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.2s;
+    font-weight: 500;
+}
+
+.option-btn:hover {
+    background: #f8faff;
+    border-color: #3498db;
+    transform: translateY(-1px);
+}
+
+.result {
+    padding: 18px;
+    background: #eef7ee;
+    border: 1px solid #bee5be;
+    border-radius: 12px;
+    font-size: 18px;
+    line-height: 1.5;
+    color: #276627;
+}
+
+.error-result {
+    background: #ffeaea;
+    border-color: #ffbaba;
+    color: #d8000c;
+}
+
+.controls {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.btn {
+    padding: 10px 16px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.2s;
+}
+
+.back-btn {
+    background: #e0e6ed;
+    color: #333;
+}
+
+.back-btn:hover {
+    background: #cbd3da;
+}
+
+.restart-btn {
+    background: #2c3e50;
+    color: white;
+}
+
+.restart-btn:hover {
+    background: #1a252f;
+}
+
+/* Admin Panel Styles */
+.admin-form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 30px;
+    background: #f8faff;
+    padding: 15px;
+    border-radius: 12px;
+    border: 1px solid #dce4ec;
+}
+
+.admin-form label {
+    font-size: 14px;
+    font-weight: bold;
+    color: #555;
+}
+
+.admin-form input,
+.admin-form select {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 14px;
+    width: 100%;
+}
+
+.admin-form input:disabled,
+.admin-form input[readonly] {
+    background-color: #e9ecef;
+    cursor: not-allowed;
+}
+
+.options-config {
+    border-left: 3px solid #3498db;
+    padding-left: 10px;
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.options-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.add-option-btn {
+    padding: 8px 10px;
+    border: 1px solid #cbd3da;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 700;
+    background: #e0e6ed;
+    color: #333;
+    transition: 0.2s;
+    white-space: nowrap;
+}
+
+.add-option-btn:hover {
+    background: #cbd3da;
+}
+
+.options-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.option-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.option-index {
+    width: 26px;
+    height: 26px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 800;
+    background: #eaf2f8;
+    color: #2c3e50;
+    border: 1px solid #dce4ec;
+    flex: 0 0 auto;
+}
+
+.option-row input {
+    flex: 1 1 auto;
+    min-width: 0;
+}
+
+.option-remove-btn {
+    padding: 8px 10px;
+    border: 1px solid #ffbaba;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 800;
+    background: #ffeaea;
+    color: #c0392b;
+    transition: 0.2s;
+    flex: 0 0 auto;
+}
+
+.option-remove-btn:hover {
+    background: #ffd6d6;
+}
+
+.option-row.is-invalid input {
+    border-color: #e74c3c;
+    background: #fff5f5;
+}
+
+.submit-btn {
+    background: #27ae60;
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.submit-btn:hover {
+    background: #219653;
+}
+
+.node-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.node-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 12px;
+    border-bottom: 1px solid #eee;
+    background: #fafafa;
+    margin-bottom: 8px;
+    border-radius: 8px;
+}
+
+.node-info {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    padding-right: 15px;
+}
+
+.node-id {
+    font-weight: bold;
+    color: #2c3e50;
+    margin-bottom: 4px;
+}
+
+.node-preview {
+    font-size: 13px;
+    color: #555;
+    margin-bottom: 6px;
+}
+
+.node-relationships {
+    font-size: 11px;
+    color: #7f8c8d;
+    background: #fff;
+    padding: 4px 8px;
+    border-radius: 4px;
+    border: 1px solid #e0e0e0;
+    margin-top: 2px;
+}
+
+.node-actions {
+    display: flex;
+    gap: 6px;
+}
+
+.edit-btn {
+    background: #f39c12;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 6px 10px;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.edit-btn:hover {
+    background: #d68910;
+}
+
+.delete-btn {
+    background: #e74c3c;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 6px 10px;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.delete-btn:hover {
+    background: #c0392b;
+}
+
+.badge {
+    background: #3498db;
+    color: white;
+    padding: 2px 6px;
+    border-radius: 10px;
+    font-size: 10px;
+    margin-left: 5px;
+}
+
+.badge.result {
+    background: #27ae60;
+}
+
+.highlight-form {
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.3);
+    border-color: #3498db;
+}
