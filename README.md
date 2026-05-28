@@ -317,15 +317,3 @@ I refactored the JavaScript by separating tree state, navigation state, renderin
 I also replaced inline `onclick` and `window` handlers with `addEventListener`, because event behavior should be owned by the JavaScript module instead of global function names. For rendering dynamic text, I used `textContent` and DOM creation instead of `innerHTML` to reduce security risk when rendering data entered from the admin form.
 
 The main benefit is lower debugging cost. If there is a bug in tree data, I inspect `createTreeStore`. If there is a bug in navigation, I inspect `createTreeNavigator`. If there is a bug in UI rendering, I inspect the render functions. This reduces cognitive load and makes future changes safer.
-
-## Suggested Review Checklist
-
-When reading poorly structured JavaScript, I can check the following:
-
-- Is internal state exposed directly?
-- Are there too many global mutable variables?
-- Does one function handle validation, mutation, rendering, and refresh at the same time?
-- Is `innerHTML` used with user-controlled text?
-- Are event handlers attached inline or through global `window` functions?
-- Can the logic be split into smaller intention-revealing functions?
-- Is there a clear boundary between state, rendering, and DOM events?
