@@ -1,4 +1,5 @@
 (() => {
+    // use strict mode for better error handling and to prevent accidental globals
     'use strict';
 
     const START_NODE_ID = 'start';
@@ -46,7 +47,8 @@
             text: 'Bạn nên học Python, FastAPI, database.',
         },
     };
-
+    
+    // Cache DOM elements for later use
     const dom = {
         questionBox: document.getElementById('questionBox'),
         backBtn: document.getElementById('backBtn'),
@@ -97,6 +99,7 @@
         return { label, next };
     };
 
+    // Normalize node data to ensure consistent structure and handle legacy formats
     const normalizeNode = (node) => {
         if (!node) {
             return null;
@@ -117,7 +120,8 @@
     };
 
     const isResultNode = (node) => node?.type === 'result';
-
+    
+    // Option Editor Module
     const createOptionEditor = ({ listEl, nextDatalistId }) => {
         const ROLE_ROW = 'option-row';
         const ROLE_LABEL = 'option-label';
@@ -212,6 +216,8 @@
             setOptions([], { minRows: 2, appendBlankRow: false });
         };
 
+        // Read the options from the editor and validate that each option has both a label and a next node. Highlight invalid rows and focus the first invalid input.
+
         const readAndValidate = () => {
             const rows = getRows();
             const options = [];
@@ -258,6 +264,7 @@
         };
     };
 
+    // Tree Store Module
     const createTreeStore = (initialData = {}) => {
         const tree = Object.entries(initialData).reduce((normalizedTree, [id, node]) => {
             normalizedTree[id] = normalizeNode(node);
@@ -356,6 +363,8 @@
         };
     };
 
+
+    // Tree Navigator Module
     const createTreeNavigator = (startNodeId = START_NODE_ID) => {
         let currentNodeId = startNodeId;
         let historyStack = [];
@@ -425,6 +434,7 @@
         renderQuestionNode(currentNode);
     };
 
+
     const renderMissingNodeMessage = (nodeId) => {
         const message = createElement(
             'p',
@@ -457,6 +467,7 @@
         node.options.forEach(renderAnswerOption);
     };
 
+    // Render an answer option as a button and attach an event listener to navigate to the next node when clicked
     const renderAnswerOption = (option) => {
         const button = createElement('button', 'option-btn', `${option.label} ->`);
         button.type = 'button';
@@ -484,6 +495,7 @@
         syncOptionsVisibility();
     };
 
+    // Populate the admin form with node data for editing
     const populateFormForEdit = (nodeId) => {
         const node = treeStore.getNode(nodeId);
 
@@ -508,6 +520,7 @@
         syncOptionsVisibility();
     };
 
+    // Build node data from the admin form inputs, with validation
     const buildNodeFromForm = () => {
         const type = dom.nodeTypeSelect.value;
         const text = dom.nodeTextInput.value.trim();
@@ -544,6 +557,8 @@
         );
     };
 
+
+    // Handle the admin form submission for creating or updating nodes, with validation and user confirmation for missing targets
     const handleAdminSubmit = (event) => {
         event.preventDefault();
 
@@ -622,7 +637,7 @@
         option.value = nodeId;
         dom.nodeIdsList.appendChild(option);
     };
-
+    // Append a list item to the admin panel's node list with node information and actions for editing and deleting
     const appendNodeListItem = (nodeId, node, relationship) => {
         const listItem = createElement('li', 'node-item');
         const nodeInfo = buildNodeInfo(nodeId, node, relationship);
@@ -650,6 +665,8 @@
         return container;
     };
 
+
+    // Build the node information section for the admin panel, including relationships and a preview of the text
     const buildNodeInfo = (nodeId, node, relationship = { in: [], out: [] }) => {
         const nodeInfo = createElement('div', 'node-info');
         const nodeTitle = createElement('div', 'node-id', nodeId);
@@ -663,6 +680,7 @@
         return nodeInfo;
     };
 
+    // Build the action buttons for each node in the admin panel, including event listeners for editing and deleting nodes
     const buildNodeActions = (nodeId) => {
         const actions = createElement('div', 'node-actions');
         const editButton = createElement('button', 'edit-btn', 'Edit');
@@ -705,6 +723,7 @@
         renderCurrentQuestion();
     };
 
+    // Bind event listeners to the DOM elements for user interactions
     const bindEvents = () => {
         dom.nodeTypeSelect.addEventListener('change', syncOptionsVisibility);
         dom.adminForm.addEventListener('submit', handleAdminSubmit);
